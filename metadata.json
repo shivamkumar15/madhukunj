@@ -1,0 +1,6 @@
+{
+  "name": "Madhukunj — Incense & Fragrances",
+  "description": "A 3D gallery storefront for Madhukunj incense and fragrance products.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
