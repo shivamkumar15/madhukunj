@@ -877,6 +877,12 @@ export function GalleryCanvas({
       }
     }
 
+    function onPointerCancel() {
+      isPointerDown = false;
+      dragged = false;
+      setIsDraggingUI(false);
+    }
+
     function onKeyDown(e: KeyboardEvent) {
       if (!activeRef.current) return;
       if (
@@ -919,6 +925,7 @@ export function GalleryCanvas({
     canvasEl.addEventListener('pointerdown', onPointerDown);
     window.addEventListener('pointermove', onPointerMove);
     window.addEventListener('pointerup', onPointerUp);
+    window.addEventListener('pointercancel', onPointerCancel);
     window.addEventListener('keydown', onKeyDown);
     window.addEventListener('resize', onResize);
     canvasEl.addEventListener('webglcontextlost', onContextLost);
@@ -932,6 +939,7 @@ export function GalleryCanvas({
       canvasEl.removeEventListener('pointerdown', onPointerDown);
       window.removeEventListener('pointermove', onPointerMove);
       window.removeEventListener('pointerup', onPointerUp);
+      window.removeEventListener('pointercancel', onPointerCancel);
       window.removeEventListener('keydown', onKeyDown);
       window.removeEventListener('resize', onResize);
       canvasEl.removeEventListener('webglcontextlost', onContextLost);

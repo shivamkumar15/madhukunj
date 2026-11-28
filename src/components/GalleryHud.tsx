@@ -28,6 +28,9 @@ export function GalleryHud({
   const maskDelay = (idx: number) =>
     introAnimate ? { animationDelay: `${250 + idx * 60}ms` } : undefined;
 
+  const isTouch = window.matchMedia('(pointer: coarse)').matches;
+  const tap = isTouch ? 'Tap' : 'Click';
+
   return (
     <>
       <div className={`gui${visible ? '' : ' is-hidden'}${introAnimate ? ' intro-animate' : ''}`}>
@@ -53,12 +56,18 @@ export function GalleryHud({
         <div className="gui-hint" aria-live="polite">
           <span className="mask-line">
             <span className="mask-line-inner" style={maskDelay(0)}>
-              {isFocused ? 'Click the product to open it' : 'Scroll or drag to walk round'}
+              {isFocused
+                ? `${tap} the product to open it`
+                : `${isTouch ? 'Swipe' : 'Scroll'} or drag to walk round`}
             </span>
           </span>
           <span className="mask-line">
             <span className="mask-line-inner" style={maskDelay(1)}>
-              {isFocused ? 'Esc or click away to step back' : 'Click a product to look closer'}
+              {isFocused
+                ? isTouch
+                  ? 'Tap away to step back'
+                  : 'Esc or click away to step back'
+                : `${tap} a product to look closer`}
             </span>
           </span>
         </div>

@@ -1,4 +1,5 @@
-import { Heart, Search, ShoppingBag, User } from 'lucide-react';
+import { useState } from 'react';
+import { Heart, Menu, Search, ShoppingBag, User, X } from 'lucide-react';
 
 export type NavDialogType =
   | 'search'
@@ -32,6 +33,7 @@ export function NavBar({
   onOpenDialog,
   onOpenBag,
 }: NavBarProps) {
+  const [menuOpen, setMenuOpen] = useState(false);
   const navDelay = (idx: number) =>
     introAnimate ? { animationDelay: `${250 + (5 + idx) * 60}ms` } : undefined;
 
@@ -55,13 +57,17 @@ export function NavBar({
         />
       </a>
 
-      <nav className="nav-links" aria-label="Primary">
+      <nav
+        className={`nav-links${menuOpen ? ' is-open' : ''}`}
+        aria-label="Primary"
+      >
         <a
           href="#list"
           className="nav-link"
           style={navDelay(1)}
           onClick={(e) => {
             e.preventDefault();
+            setMenuOpen(false);
             onGoList();
           }}
         >
@@ -71,6 +77,7 @@ export function NavBar({
           href="/madhukunj/bestsellers.html"
           className="nav-link"
           style={navDelay(2)}
+          onClick={() => setMenuOpen(false)}
         >
           Our Best Seller Products
         </a>
@@ -80,6 +87,7 @@ export function NavBar({
           style={navDelay(3)}
           onClick={(e) => {
             e.preventDefault();
+            setMenuOpen(false);
             onGoAbout();
           }}
         >
@@ -91,14 +99,39 @@ export function NavBar({
           style={navDelay(4)}
           onClick={(e) => {
             e.preventDefault();
+            setMenuOpen(false);
             onGoGallery();
           }}
         >
           Gallery
         </a>
+        <button
+          type="button"
+          className="nav-link nav-menu-account"
+          onClick={() => {
+            setMenuOpen(false);
+            onOpenDialog('account');
+          }}
+        >
+          Account
+        </button>
       </nav>
 
       <div className="nav-right">
+        <button
+          type="button"
+          className="nav-menu-btn"
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((v) => !v)}
+        >
+          {menuOpen ? (
+            <X className="nav-icon-svg" strokeWidth={1.6} aria-hidden="true" />
+          ) : (
+            <Menu className="nav-icon-svg" strokeWidth={1.6} aria-hidden="true" />
+          )}
+        </button>
+
         <button
           type="button"
           className="nav-search"

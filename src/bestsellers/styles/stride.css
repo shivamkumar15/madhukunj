@@ -144,7 +144,7 @@ a:focus-visible {
 
 .skip-pill {
   position: fixed;
-  top: max(16px, calc(28 * var(--u)));
+  top: calc(max(16px, calc(28 * var(--u))) + env(safe-area-inset-top));
   right: max(16px, calc(36 * var(--u)));
   height: 38px;
   padding: 0 18px;
@@ -1219,8 +1219,8 @@ body.dragging .hero-arc {
 /* Responsive: Phone (< 820px) */
 @media (max-width: 819px) {
   .site-nav {
-    height: 64px;
-    padding: 0 16px;
+    height: calc(64px + env(safe-area-inset-top));
+    padding: env(safe-area-inset-top) 16px 0;
   }
 
   .nav-brand-mark {
@@ -1228,8 +1228,9 @@ body.dragging .hero-arc {
     height: 30px;
   }
 
+  /* Keep the actions inside a 360px viewport; the mark still identifies us */
   .nav-brand-text {
-    font-size: 14px;
+    display: none;
   }
 
   .nav-pill {
@@ -1306,13 +1307,13 @@ body.dragging .hero-arc {
   }
 
   #count {
-    top: 76px;
+    top: calc(76px + env(safe-area-inset-top));
     right: 14px;
     font-size: 56px;
   }
 
   #auto {
-    top: 142px;
+    top: calc(142px + env(safe-area-inset-top));
     right: 16px;
   }
 

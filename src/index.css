@@ -243,6 +243,11 @@ a {
   border-color: var(--ink);
 }
 
+.nav-menu-btn,
+.nav-menu-account {
+  display: none;
+}
+
 .nav-icon-btn {
   position: relative;
   width: max(24px, calc(26 * var(--u)));
@@ -1850,22 +1855,77 @@ a {
     height: 26px;
   }
 
-  .nav-links,
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 12px;
+    right: 12px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px;
+    background: var(--page);
+    border: 1px solid var(--ink-15);
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(43, 36, 54, 0.14);
+  }
+
+  .nav-links.is-open {
+    display: flex;
+  }
+
+  .nav-links .nav-link,
+  .nav-menu-account {
+    display: flex;
+    min-height: 44px;
+    font-size: 14px;
+  }
+
+  .nav-menu-btn,
   .nav-search,
-  .nav-currency,
-  .nav-account-btn,
   .nav-heart-btn {
+    display: inline-flex;
+  }
+
+  .nav-currency,
+  .nav-account-btn {
     display: none;
   }
 
-  .nav-bag-btn {
-    width: 32px;
-    height: 32px;
+  .nav-right {
+    gap: 4px;
   }
 
-  .nav-bag-btn .nav-icon-svg {
-    width: 20px;
-    height: 20px;
+  .nav-menu-btn {
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .nav-search {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    justify-content: center;
+    border-color: transparent;
+  }
+
+  .nav-search-label,
+  .nav-search-kbd {
+    display: none;
+  }
+
+  .nav-search-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .nav-icon-btn {
+    width: 40px;
+    height: 40px;
   }
 
   .gui-hint {
@@ -2006,7 +2066,7 @@ a {
   }
 
   .qty-stepper {
-    width: 100px;
+    width: 132px;
     height: 50px;
   }
 
@@ -2126,6 +2186,15 @@ a {
 
   .drawer-thumb {
     width: 60px;
+  }
+
+  /* Touch targets: keep small controls at least 44px on phones */
+  .card-heart,
+  .qty-btn,
+  .drawer-qty-btn,
+  .drawer-trash {
+    min-width: 44px;
+    min-height: 44px;
   }
 }
 

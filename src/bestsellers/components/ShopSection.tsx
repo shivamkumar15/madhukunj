@@ -163,6 +163,7 @@ export function ShopSection({
               onPointerLeave={() => handlePointerLeave(idx)}
               onPointerDown={() => handlePointerDownCard(idx)}
               onPointerUp={() => handlePointerUpCard(idx)}
+              onPointerCancel={() => handlePointerUpCard(idx)}
               onClick={() => handlePoke(idx)}
             >
               <div className="card-name disp">
